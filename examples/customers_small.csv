@@ -1,0 +1,16 @@
+email,name,city,phone
+maria.garcia@example.com,Maria Garcia,Austin,512-555-0101
+john.doe@example.com,John Doe,Dallas,214-555-0110
+john.doe+promo@example.com,John Doe,Houston,713-555-0220
+sofia.lee@example.com,Sofia Lee,Austin,512-555-0134
+ajenkins@example.com,Alex Jenkins,San Antonio,210-555-0188
+cynthia.chan@example.com,Cynthia Chan,Dallas,214-555-0440
+maria.garcia@example.com,Maria Garcia,Austin,512-555-0101
+emily.santos@example.com,Emily Santos,Fort Worth,682-555-0300
+rachel.roe@example.org,Rachel Roe,Plano,469-555-0711
+rachelroe@example.org,Rachel Roe,Plano,469-555-0711
+invalid-email,Ramon Ortiz,El Paso,915-555-0505
+paul.nguyen@example.com,Paul Nguyen,San Jose,408-555-0606
+sierra.james@example.com,Sierra James,Austin,512-555-0199
+mike.thomas@example.net,Mike Thomas,Houston,713-555-0999
+lucy-b@example.com,Lucy Brown,San Diego,619-555-0420
