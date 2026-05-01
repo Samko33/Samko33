@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kadeřnictví Na Písku | Semín</title>
+  <meta name="description" content="Návrh moderního jednostránkového webu pro Kadeřnictví Na Písku v Semíně. Dámské, pánské a dětské kadeřnictví, barvení, melírování a vlasový styling.">
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --paper: #fcf8f2;
+      --ink: #241a16;
+      --muted: #6e5a50;
+      --line: rgba(36, 26, 22, 0.12);
+      --accent: #b35c36;
+      --accent-dark: #8f4120;
+      --accent-soft: #e9c8b6;
+      --olive: #5d6a4f;
+      --shadow: 0 24px 80px rgba(36, 26, 22, 0.12);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(233, 200, 182, 0.22), transparent 28%),
+        linear-gradient(135deg, #f5efe6 0%, #fbf7f1 45%, #efe4d7 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-shell {
+      overflow: clip;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(252, 248, 242, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner,
+    .hero-inner,
+    .section-inner,
+    .footer-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .brand-mark {
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .brand-name,
+    h1,
+    h2,
+    h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .brand-name {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-phone {
+      color: var(--muted);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.96rem;
+      font-weight: 600;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      box-shadow: 0 18px 36px rgba(179, 92, 54, 0.22);
+    }
+
+    .button-secondary {
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 74px);
+      display: grid;
+      align-items: center;
+      padding: 3.5rem 0 2.5rem;
+      background:
+        radial-gradient(circle at top right, rgba(233, 200, 182, 0.3), transparent 24%),
+        linear-gradient(120deg, rgba(36, 26, 22, 0.94), rgba(62, 43, 34, 0.88) 45%, rgba(93, 106, 79, 0.86) 100%);
+      color: #fff;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      right: min(6vw, 4rem);
+      top: 6rem;
+      width: min(40vw, 460px);
+      aspect-ratio: 0.9;
+      border-radius: 48% 52% 26% 74% / 36% 40% 60% 64%;
+      background:
+        linear-gradient(180deg, rgba(233, 200, 182, 0.65), rgba(179, 92, 54, 0.2)),
+        repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0 2px, transparent 2px 18px);
+      opacity: 0.72;
+      filter: blur(0.2px);
+    }
+
+    .hero::after {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(180deg, transparent, rgba(245, 239, 230, 0.95));
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 620px) minmax(280px, 1fr);
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      line-height: 0.94;
+      max-width: 10ch;
+    }
+
+    .hero p {
+      margin: 1.2rem 0 0;
+      max-width: 34rem;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 0.85rem;
+      justify-self: end;
+      width: min(100%, 340px);
+      padding: 1.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-meta span {
+      display: block;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .section-inner {
+      padding: 5.8rem 0;
+    }
+
+    .section-header {
+      display: grid;
+      gap: 0.7rem;
+      margin-bottom: 2.4rem;
+      max-width: 44rem;
+    }
+
+    .section-kicker {
+      color: var(--accent-dark);
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 4.1rem);
+      line-height: 0.95;
+    }
+
+    .section-header p,
+    .body-copy,
+    .service-copy,
+    .review-copy,
+    .contact-copy {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .services-grid,
+    .reasons-grid,
+    .reviews-grid,
+    .contact-grid {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .service {
+      min-height: 230px;
+      padding: 1.5rem;
+      background: rgba(252, 248, 242, 0.72);
+      border: 1px solid var(--line);
+      display: grid;
+      align-content: start;
+      gap: 1rem;
+    }
+
+    .service-index,
+    .reason-index {
+      color: var(--accent-dark);
+      font-size: 0.84rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.9rem;
+      line-height: 0.95;
+    }
+
+    .service-copy {
+      font-size: 0.98rem;
+    }
+
+    .why {
+      background: linear-gradient(180deg, rgba(93, 106, 79, 0.06), rgba(93, 106, 79, 0.01));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .reasons-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .reason {
+      padding: 1.4rem 1.35rem 0;
+      border-top: 2px solid rgba(93, 106, 79, 0.3);
+    }
+
+    .proof {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .proof-panel {
+      padding: 1.8rem;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid var(--line);
+    }
+
+    .proof-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .proof-item {
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .proof-item strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .reviews-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 2rem;
+    }
+
+    .review {
+      min-height: 220px;
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(233, 200, 182, 0.28), rgba(255, 255, 255, 0.52));
+      border: 1px solid var(--line);
+      display: grid;
+      align-content: space-between;
+      gap: 1rem;
+    }
+
+    .review-copy {
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .review-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .contact {
+      background:
+        linear-gradient(180deg, rgba(252, 248, 242, 0.86), rgba(252, 248, 242, 0.96)),
+        repeating-linear-gradient(0deg, rgba(36, 26, 22, 0.03) 0 1px, transparent 1px 24px);
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+      align-items: start;
+    }
+
+    .contact-copy {
+      max-width: 38rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .contact-item {
+      padding: 1rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .map-placeholder {
+      position: relative;
+      min-height: 100%;
+      padding: 1.6rem;
+      background:
+        linear-gradient(135deg, rgba(233, 200, 182, 0.8), rgba(93, 106, 79, 0.18)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 1px, transparent 1px 34px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.32) 0 1px, transparent 1px 34px);
+      border: 1px solid rgba(36, 26, 22, 0.12);
+      min-height: 360px;
+      overflow: hidden;
+    }
+
+    .map-placeholder::before,
+    .map-placeholder::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(179, 92, 54, 0.22);
+    }
+
+    .map-placeholder::before {
+      width: 220px;
+      height: 220px;
+      right: -40px;
+      top: -50px;
+    }
+
+    .map-placeholder::after {
+      width: 180px;
+      height: 180px;
+      left: -50px;
+      bottom: -40px;
+    }
+
+    .map-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 1rem;
+      align-content: end;
+      min-height: 328px;
+    }
+
+    .map-card {
+      width: min(100%, 240px);
+      padding: 1rem;
+      background: rgba(252, 248, 242, 0.88);
+      border: 1px solid rgba(36, 26, 22, 0.12);
+      box-shadow: 0 18px 44px rgba(36, 26, 22, 0.1);
+    }
+
+    .map-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .final-cta {
+      padding-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    footer {
+      background: #221916;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.3rem 0 1.6rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    @media (max-width: 1080px) {
+      .hero-inner,
+      .proof,
+      .contact-grid,
+      .services-grid,
+      .reasons-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        min-height: 66px;
+      }
+
+      .nav-phone {
+        display: none;
+      }
+
+      .hero {
+        min-height: calc(100svh - 66px);
+        padding-top: 2rem;
+      }
+
+      h1 {
+        max-width: 8ch;
+      }
+
+      .section-inner {
+        padding: 4.3rem 0;
+      }
+
+      .hero-actions,
+      .final-cta,
+      .footer-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="brand-mark">Semín</span>
+          <a class="brand-name" href="#uvod">Kadeřnictví Na Písku</a>
+        </div>
+        <div class="nav-cta">
+          <a class="nav-phone" href="tel:+420737041944">+420 737 041 944</a>
+          <a class="button button-primary" href="#kontakt">Objednat termín</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="uvod">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">Dámské, pánské i dětské kadeřnictví</div>
+            <h1>Účes, ve kterém se budete cítit dobře.</h1>
+            <p>
+              Kadeřnictví Na Písku v Semíně nabízí příjemné prostředí, osobní domluvu a péči pro ženy,
+              muže i děti. Barvení, melírování i vlasový styling v klidném tempu a podle objednávek.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="tel:+420737041944">Zavolat a objednat</a>
+              <a class="button button-secondary" href="mailto:katerina.p.lchova@seznam.cz">Napsat e-mail</a>
+            </div>
+          </div>
+
+          <aside class="hero-meta" aria-label="Rychlé informace">
+            <div>
+              <strong>Adresa</strong>
+              <span>Semín 155, 535 01</span>
+            </div>
+            <div>
+              <strong>Otevírací doba</strong>
+              <span>Po–Pá 9:00–19:00<br>So–Ne zavřeno<br>Dle objednávek</span>
+            </div>
+            <div>
+              <strong>Kontakt</strong>
+              <span>+420 737 041 944<br>katerina.p.lchova@seznam.cz</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="section-header">
+            <span class="section-kicker">Služby</span>
+            <h2>Vše důležité přehledně na jednom místě.</h2>
+            <p>
+              Salon se zaměřuje na běžnou i slavnostnější péči o vlasy. Pokud si chcete ověřit termín,
+              stačí zavolat nebo napsat. Ceník a další detaily je možné doplnit podle potřeby.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service">
+              <span class="service-index">01</span>
+              <h3>Dámské střihy</h3>
+              <p class="service-copy">
+                Běžné úpravy vlasů i změna stylu s ohledem na přání klientky a každodenní praktičnost.
+              </p>
+            </article>
+            <article class="service">
+              <span class="service-index">02</span>
+              <h3>Pánské střihy</h3>
+              <p class="service-copy">
+                Rychlá a pečlivá úprava pro pravidelnou návštěvu i jednorázové oživení účesu.
+              </p>
+            </article>
+            <article class="service">
+              <span class="service-index">03</span>
+              <h3>Dětské stříhání</h3>
+              <p class="service-copy">
+                Klidný přístup a přizpůsobení návštěvy tak, aby byla příjemná i pro nejmenší.
+              </p>
+            </article>
+            <article class="service">
+              <span class="service-index">04</span>
+              <h3>Barvení a styling</h3>
+              <p class="service-copy">
+                Barvení, melírování a finální úprava vlasů pro všední den i speciální příležitost.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="why">
+        <div class="section-inner">
+          <div class="section-header">
+            <span class="section-kicker">Proč právě sem</span>
+            <h2>Malý salon s osobním přístupem.</h2>
+          </div>
+
+          <div class="reasons-grid">
+            <article class="reason">
+              <span class="reason-index">Osobní domluva</span>
+              <p class="body-copy">
+                Objednání probíhá přímo telefonicky nebo e-mailem, takže se dá snadno domluvit čas, který vyhovuje.
+              </p>
+            </article>
+            <article class="reason">
+              <span class="reason-index">Pro celou rodinu</span>
+              <p class="body-copy">
+                Veřejně uvedené služby pokrývají dámské, pánské i dětské kadeřnictví, takže se na jednom místě vyřídí víc potřeb.
+              </p>
+            </article>
+            <article class="reason">
+              <span class="reason-index">Lokální dostupnost</span>
+              <p class="body-copy">
+                Semín a okolí získává přehledný kontakt na salon bez složitého hledání v katalozích a starších profilech.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="proof">
+            <div>
+              <div class="section-header">
+                <span class="section-kicker">Důvěra a přehled</span>
+                <h2>Web, který pomůže rychle najít kontakt i služby.</h2>
+                <p>
+                  Současná veřejná prezentace je hlavně katalogový zápis. Tento návrh převádí dostupné informace
+                  do podoby, která je srozumitelná na mobilu, působí důvěryhodněji a pomáhá rychleji objednat návštěvu.
+                </p>
+              </div>
+            </div>
+
+            <aside class="proof-panel">
+              <h3>Co je hned vidět</h3>
+              <div class="proof-list">
+                <div class="proof-item">
+                  <strong>Jasné služby</strong>
+                  <p class="body-copy">Na první obrazovce je zřejmé, pro koho salon je a co nabízí.</p>
+                </div>
+                <div class="proof-item">
+                  <strong>Jednoduché objednání</strong>
+                  <p class="body-copy">Telefon a e-mail jsou přístupné bez dalšího proklikávání.</p>
+                </div>
+                <div class="proof-item">
+                  <strong>Lepší dojem na mobilu</strong>
+                  <p class="body-copy">Stránka je navržená tak, aby fungovala přehledně i při rychlém otevření v telefonu.</p>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div class="reviews-grid" aria-label="Veřejné ohlasy">
+            <article class="review">
+              <p class="review-copy">
+                Ve veřejném hodnocení klienti zmiňují bezvadnou domluvu, rychlost a celkovou spokojenost.
+              </p>
+              <div class="review-meta">Veřejná recenze na Firmy.cz, prosinec 2025</div>
+            </article>
+            <article class="review">
+              <p class="review-copy">
+                Další recenze vyzdvihuje šikovnost a příjemný výsledek služby.
+              </p>
+              <div class="review-meta">Veřejná recenze na Firmy.cz, duben 2022</div>
+            </article>
+            <article class="review">
+              <p class="review-copy">
+                Starší hodnocení mluví o přátelské atmosféře a profesionálním přístupu.
+              </p>
+              <div class="review-meta">Veřejná recenze na Firmy.cz, leden 2020</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="kontakt">
+        <div class="section-inner">
+          <div class="contact-grid">
+            <div>
+              <div class="section-header">
+                <span class="section-kicker">Kontakt</span>
+                <h2>Domluvte si termín jednoduše.</h2>
+              </div>
+
+              <p class="contact-copy">
+                Nejrychlejší cesta je telefonicky. Pokud vám více vyhovuje zpráva, napište e-mail a salon se může ozvat zpět.
+                Některé doplňující informace, například detailnější ceník, je možné na web kdykoli doplnit.
+              </p>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <strong>Telefon</strong>
+                  <a href="tel:+420737041944">+420 737 041 944</a>
+                </div>
+                <div class="contact-item">
+                  <strong>E-mail</strong>
+                  <a href="mailto:katerina.p.lchova@seznam.cz">katerina.p.lchova@seznam.cz</a>
+                </div>
+                <div class="contact-item">
+                  <strong>Adresa</strong>
+                  <span>Semín 155, 535 01</span>
+                </div>
+                <div class="contact-item">
+                  <strong>Otevírací doba</strong>
+                  <span>Po–Pá 9:00–19:00, So–Ne zavřeno<br>Dle objednávek</span>
+                </div>
+                <div class="contact-item">
+                  <strong>Oblast působení</strong>
+                  <span>Semín a okolí</span>
+                </div>
+              </div>
+
+              <div class="final-cta">
+                <a class="button button-primary" href="tel:+420737041944">Zavolat do salonu</a>
+                <a class="button" style="border-color: var(--line); background: transparent;" href="mailto:katerina.p.lchova@seznam.cz">Poslat e-mail</a>
+              </div>
+            </div>
+
+            <div class="map-placeholder" aria-label="Místo pro mapu">
+              <div class="map-content">
+                <div class="map-card">
+                  <strong>Kadeřnictví Na Písku</strong>
+                  <span>Semín 155<br>535 01</span>
+                </div>
+                <div class="note">
+                  Zde může být vložena interaktivní mapa nebo přesný odkaz na navigaci.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Kadeřnictví Na Písku, Semín</span>
+        <span>Návrh přehledné jednostránkové prezentace</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
